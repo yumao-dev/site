@@ -1,0 +1,16 @@
+<div class="row no-gutters justify-content-center">
+  <div class="wrapper">
+    <!-- Content -->
+    <div class="contact-wrap">
+      <section *ngIf="news">
+        <header class="header">
+          <h1>{{ news.title }}</h1>
+          <span class="byline">{{
+            news.publishtime | date : "yyyy-MM-dd HH:mm"
+          }}</span>
+        </header>
+        <div [innerHTML]="news.content"></div>
+      </section>
+    </div>
+  </div>
+</div>

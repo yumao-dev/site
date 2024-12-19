@@ -1,0 +1,92 @@
+<div class="row no-gutters slider-text align-items-center">
+  <div class="col-lg-7">
+    <div
+      class="text mt-5"
+      data-aos="fade-up"
+      data-aos-delay="300"
+      data-aos-duration="1000"
+    >
+      <span class="subheading">Hi There!</span>
+      <h1 class="mb-4">
+        开始,然后
+        <span
+          class="typewrite"
+          data-period="2000"
+          data-type='[ "A Web Designer", "A Developer", "I Love Design.", "I Love to Develop." ]'
+        >
+          <span class="wrap"></span>
+        </span>
+      </h1>
+      <div class="w-md-75 w-100">
+        <p class="mb-4">一地鸡毛!!!</p>
+        <p>
+          <a routerLink="/" class="btn btn-primary p-4 py-3"
+            >Hire Me <span class="ion-ios-arrow-round-forward"></span
+          ></a>
+          <a
+            [routerLink]="['./']"
+            fragment="sites"
+            class="btn btn-white p-4 py-3 ms-lg-2"
+            >查看所有可用站点 <span class="ion-ios-arrow-round-forward"></span
+          ></a>
+        </p>
+        <!-- <p class="social-media mt-5">
+          <a href="#"><span class="ion-ios-add"></span> Facebook</a>
+          <a href="#"><span class="ion-ios-add"></span> Twitter</a>
+          <a href="#"><span class="ion-ios-add"></span> Linkedin</a>
+        </p> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <ul class="style">
+      <li
+        *ngFor="
+          let item of hotnews | async as news;
+          index as i;
+          first as isFirst
+        "
+      >
+        <p class="posted">
+          <a
+            *ngIf="item.linkurl; else elselink"
+            class="text"
+            target="_blank"
+            href="{{ item.linkurl }}"
+            >{{ item.title }}</a
+          >
+          <ng-template #elselink>
+            <a class="text" [routerLink]="['/news/content', item.id]">{{
+              item.title
+            }}</a>
+          </ng-template>
+
+          <b class="float-end font-gray">
+            {{ item.publishtime | date : "yyyy-MM-dd HH:mm" }}
+          </b>
+        </p>
+      </li>
+
+      <li>
+        <!-- href="{{item.linkurl}}" -->
+        <a class="float-end text" [routerLink]="['/news/list']"> 更多...... </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row" id="sites">
+  <div
+    class="col-lg-4 col-sm-4 col-md-4"
+    *ngFor="let item of sites | async; index as i"
+  >
+    <h2>{{ item.name }}</h2>
+    <a href="{{ item.backurl }}" target="_blank" class="image full">
+      <img ngSrc="{{ item.imageurl }}" width="314" height="144" alt="" />
+    </a>
+    <p class="fontc-blue">{{ item.description }}</p>
+    <!-- <p>
+        <a href="{{ item.backurl }}" target="_blank" class="button">去瞧瞧</a>
+      </p> -->
+  </div>
+</div>

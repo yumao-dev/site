@@ -1,0 +1,32 @@
+<div class="row no-gutters slider-text align-items-center">
+  <tabset [justified]="true">
+    <tab *ngFor="let cate of cates | async" heading="{{ cate.name }}">
+      <h2 style="margin-top: 1em">{{ cate.description }}</h2>
+
+      <ul class="style">
+        <li
+          *ngFor="let news of (newss | async)! | filter : filternew : cate.id"
+        >
+          <p>
+            <a
+              *ngIf="news.linkurl; else elselink"
+              class="text"
+              target="_blank"
+              href="{{ news.linkurl }}"
+              >{{ news.title }}</a
+            >
+            <ng-template #elselink>
+              <a class="text" [routerLink]="['/news/content', news.id]">{{
+                news.title
+              }}</a>
+            </ng-template>
+
+            <b class="posted" style="float: right">{{
+              news.publishtime | date : "yyyy-MM-dd HH:mm"
+            }}</b>
+          </p>
+        </li>
+      </ul>
+    </tab>
+  </tabset>
+</div>
