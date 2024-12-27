@@ -12,7 +12,7 @@ export class NewsService extends BaseHttpService {
   }
 
   private get domain() {
-    return 'https://service.yumao.tech/data';
+    return 'https://service.yumao.tech/store';
   }
 
   GetAll(): Observable<Array<INews>> {
@@ -20,7 +20,7 @@ export class NewsService extends BaseHttpService {
       concatMap((c) => {
         return this.GetDataHttp<Array<INews>>(
           'GET',
-          `${this.domain}/api/index/${c.appname}`
+          `${this.domain}/api/data/index/${c.appname}`
         );
       })
     );
@@ -31,7 +31,7 @@ export class NewsService extends BaseHttpService {
       concatMap((c) => {
         return this.GetDataHttp<ICates[]>(
           'GET',
-          `${this.domain}/api/index/cates/${c.appname}`
+          `${this.domain}/api/data/index/cates/${c.appname}`
         );
       }),
       map((a) => {
@@ -43,7 +43,7 @@ export class NewsService extends BaseHttpService {
   GetNews(id: number): Observable<INewsDetail> {
     return this.GetDataHttp<INewsDetail>(
       'GET',
-      `${this.domain}/api/index/${id}`
+      `${this.domain}/api/data/index/${id}`
     );
   }
 }
